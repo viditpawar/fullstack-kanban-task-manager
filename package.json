@@ -1,0 +1,23 @@
+{
+  "name": "fullstack-kanban-task-manager",
+  "version": "1.0.0",
+  "description": "Full-stack Kanban task manager with React, Express, and CI/CD workflows using GitHub Actions.",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "lint:client": "npm --prefix client run lint",
+    "lint:server": "node --check server/src/server.js && node --check server/src/controllers/taskController.js && node --check server/src/models/taskModel.js && node --check server/src/routes/taskRoutes.js",
+    "lint": "npm run lint:client && npm run lint:server"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "kanban",
+    "ci-cd",
+    "github-actions",
+    "full-stack"
+  ],
+  "author": "Vidit Pawar",
+  "license": "MIT"
+}
