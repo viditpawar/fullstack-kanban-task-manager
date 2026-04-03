@@ -7,8 +7,10 @@
     "client": "npm --prefix client run dev",
     "server": "npm --prefix server run dev",
     "lint:client": "npm --prefix client run lint",
-    "lint:server": "node --check server/src/server.js && node --check server/src/controllers/taskController.js && node --check server/src/models/taskModel.js && node --check server/src/routes/taskRoutes.js",
-    "lint": "npm run lint:client && npm run lint:server"
+    "lint:server": "node --check server/src/server.js && node --check server/src/app.js && node --check server/src/controllers/taskController.js && node --check server/src/models/taskModel.js && node --check server/src/routes/taskRoutes.js",
+    "lint": "npm run lint:client && npm run lint:server",
+    "test:server": "npm --prefix server test",
+    "test": "npm run test:server"
   },
   "keywords": [
     "react",
