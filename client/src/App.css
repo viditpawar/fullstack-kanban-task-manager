@@ -107,3 +107,54 @@
   color: #b91c1c;
   font-weight: 600;
 }
+
+.task-form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: grid;
+  gap: 0.85rem;
+}
+
+.task-form h2 {
+  margin-bottom: 0.5rem;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.task-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.task-form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.task-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #b91c1c;
+  font-weight: 600;
+}

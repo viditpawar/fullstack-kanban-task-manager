@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Column from "./Column";
+import TaskForm from "./TaskForm";
 
 function Board() {
   const [tasks, setTasks] = useState([]);
@@ -27,6 +28,10 @@ function Board() {
     fetchTasks();
   }, []);
 
+  const handleTaskCreated = (newTask) => {
+    setTasks((previousTasks) => [...previousTasks, newTask]);
+  };
+
   const todoTasks = tasks.filter((task) => task.status === "todo");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
   const doneTasks = tasks.filter((task) => task.status === "done");
@@ -40,11 +45,14 @@ function Board() {
   }
 
   return (
-    <div className="board">
-      <Column title="To Do" tasks={todoTasks} />
-      <Column title="In Progress" tasks={inProgressTasks} />
-      <Column title="Done" tasks={doneTasks} />
-    </div>
+    <>
+      <TaskForm onTaskCreated={handleTaskCreated} />
+      <div className="board">
+        <Column title="To Do" tasks={todoTasks} />
+        <Column title="In Progress" tasks={inProgressTasks} />
+        <Column title="Done" tasks={doneTasks} />
+      </div>
+    </>
   );
 }
 
