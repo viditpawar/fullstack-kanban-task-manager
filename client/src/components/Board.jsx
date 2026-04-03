@@ -1,33 +1,43 @@
+import { useEffect, useState } from "react";
 import Column from "./Column";
 
 function Board() {
-  const tasks = [
-    {
-      id: 1,
-      title: "Set up project repository",
-      description: "Initialize the full-stack Kanban task manager project",
-      status: "todo",
-      priority: "high",
-    },
-    {
-      id: 2,
-      title: "Build backend API",
-      description: "Create Express routes for task management",
-      status: "in-progress",
-      priority: "medium",
-    },
-    {
-      id: 3,
-      title: "Design frontend UI",
-      description: "Create Kanban board columns and task cards",
-      status: "done",
-      priority: "low",
-    },
-  ];
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/tasks");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks from the server.");
+        }
+
+        const data = await response.json();
+        setTasks(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
 
   const todoTasks = tasks.filter((task) => task.status === "todo");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
   const doneTasks = tasks.filter((task) => task.status === "done");
+
+  if (loading) {
+    return <p className="status-message">Loading tasks...</p>;
+  }
+
+  if (error) {
+    return <p className="status-message error">{error}</p>;
+  }
 
   return (
     <div className="board">

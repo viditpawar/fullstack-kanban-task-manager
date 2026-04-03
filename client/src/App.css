@@ -96,3 +96,14 @@
   text-align: center;
   margin-top: 2rem;
 }
+.status-message {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 2rem;
+  color: #4b5563;
+}
+
+.status-message.error {
+  color: #b91c1c;
+  font-weight: 600;
+}
