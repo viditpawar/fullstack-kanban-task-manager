@@ -63,6 +63,24 @@ function Board() {
     }
   };
 
+  const handleDeleteTask = async (taskId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete task.");
+      }
+
+      setTasks((previousTasks) =>
+        previousTasks.filter((task) => task.id !== taskId)
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const todoTasks = tasks.filter((task) => task.status === "todo");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
   const doneTasks = tasks.filter((task) => task.status === "done");
@@ -83,16 +101,19 @@ function Board() {
           title="To Do"
           tasks={todoTasks}
           onStatusChange={handleStatusChange}
+          onDeleteTask={handleDeleteTask}
         />
         <Column
           title="In Progress"
           tasks={inProgressTasks}
           onStatusChange={handleStatusChange}
+          onDeleteTask={handleDeleteTask}
         />
         <Column
           title="Done"
           tasks={doneTasks}
           onStatusChange={handleStatusChange}
+          onDeleteTask={handleDeleteTask}
         />
       </div>
     </>

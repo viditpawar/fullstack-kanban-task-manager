@@ -180,3 +180,19 @@
   font-family: inherit;
   background: #ffffff;
 }
+
+.delete-button {
+  margin-top: 0.5rem;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}

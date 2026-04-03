@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard";
 
-function Column({ title, tasks, onStatusChange }) {
+function Column({ title, tasks, onStatusChange, onDeleteTask }) {
   return (
     <div className="column">
       <h2>{title}</h2>
@@ -11,6 +11,7 @@ function Column({ title, tasks, onStatusChange }) {
               key={task.id}
               task={task}
               onStatusChange={onStatusChange}
+              onDeleteTask={onDeleteTask}
             />
           ))
         ) : (

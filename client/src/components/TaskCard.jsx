@@ -1,6 +1,10 @@
-function TaskCard({ task, onStatusChange }) {
+function TaskCard({ task, onStatusChange, onDeleteTask }) {
   const handleChange = (event) => {
     onStatusChange(task.id, event.target.value);
+  };
+
+  const handleDelete = () => {
+    onDeleteTask(task.id);
   };
 
   return (
@@ -23,6 +27,10 @@ function TaskCard({ task, onStatusChange }) {
           <option value="in-progress">In Progress</option>
           <option value="done">Done</option>
         </select>
+
+        <button className="delete-button" onClick={handleDelete}>
+          Delete Task
+        </button>
       </div>
     </div>
   );
