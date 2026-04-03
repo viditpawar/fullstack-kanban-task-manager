@@ -32,6 +32,37 @@ function Board() {
     setTasks((previousTasks) => [...previousTasks, newTask]);
   };
 
+  const handleStatusChange = async (taskId, newStatus) => {
+    try {
+      const taskToUpdate = tasks.find((task) => task.id === taskId);
+
+      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...taskToUpdate,
+          status: newStatus,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update task status.");
+      }
+
+      const updatedTask = await response.json();
+
+      setTasks((previousTasks) =>
+        previousTasks.map((task) =>
+          task.id === taskId ? updatedTask : task
+        )
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const todoTasks = tasks.filter((task) => task.status === "todo");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
   const doneTasks = tasks.filter((task) => task.status === "done");
@@ -48,9 +79,21 @@ function Board() {
     <>
       <TaskForm onTaskCreated={handleTaskCreated} />
       <div className="board">
-        <Column title="To Do" tasks={todoTasks} />
-        <Column title="In Progress" tasks={inProgressTasks} />
-        <Column title="Done" tasks={doneTasks} />
+        <Column
+          title="To Do"
+          tasks={todoTasks}
+          onStatusChange={handleStatusChange}
+        />
+        <Column
+          title="In Progress"
+          tasks={inProgressTasks}
+          onStatusChange={handleStatusChange}
+        />
+        <Column
+          title="Done"
+          tasks={doneTasks}
+          onStatusChange={handleStatusChange}
+        />
       </div>
     </>
   );

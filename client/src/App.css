@@ -158,3 +158,25 @@
   color: #b91c1c;
   font-weight: 600;
 }
+
+.task-actions {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.task-actions label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.task-actions select {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #ffffff;
+}
