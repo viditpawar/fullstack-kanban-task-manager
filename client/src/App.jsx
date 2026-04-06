@@ -6,11 +6,10 @@ function App() {
     <div className="app">
       <div className="app-shell">
         <header className="app-header">
-          <p className="eyebrow">Kanban Workspace</p>
-          <h1>Full Stack Kanban Task Manager</h1>
-          <p className="subtitle">
-            Plan clearly, ship faster, and keep every task in one focused board.
-          </p>
+          <div>
+            <p className="eyebrow">Sprint Board</p>
+            <h1>Work Items</h1>
+          </div>
         </header>
         <Board />
       </div>

@@ -1,5 +1,7 @@
 # Full Stack Kanban Task Manager
 
+[![CI Pipeline](https://github.com/viditpawar/fullstack-kanban-task-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/viditpawar/fullstack-kanban-task-manager/actions/workflows/ci.yml)
+
 A full-stack task management application built with React and Express, featuring a Kanban-style board and automated CI checks with GitHub Actions.
 
 ## Features
