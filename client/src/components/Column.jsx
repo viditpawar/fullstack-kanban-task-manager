@@ -1,24 +1,35 @@
 import TaskCard from "./TaskCard";
 
-function Column({ title, tasks, onStatusChange, onDeleteTask }) {
+function Column({
+  title,
+  columnKey,
+  tasks,
+  onStatusChange,
+  onDeleteTask,
+  emptyMessage,
+}) {
   return (
-    <div className="column">
-      <h2>{title}</h2>
+    <section className={`column ${columnKey}`}>
+      <header className="column-header">
+        <h2>{title}</h2>
+        <span className="column-count">{tasks.length}</span>
+      </header>
       <div className="task-list">
         {tasks.length > 0 ? (
-          tasks.map((task) => (
+          tasks.map((task, index) => (
             <TaskCard
               key={task.id}
               task={task}
+              index={index}
               onStatusChange={onStatusChange}
               onDeleteTask={onDeleteTask}
             />
           ))
         ) : (
-          <p className="empty-state">No tasks available</p>
+          <p className="empty-state">{emptyMessage}</p>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

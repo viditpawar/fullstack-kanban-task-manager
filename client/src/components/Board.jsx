@@ -84,36 +84,59 @@ function Board() {
   const todoTasks = tasks.filter((task) => task.status === "todo");
   const inProgressTasks = tasks.filter((task) => task.status === "in-progress");
   const doneTasks = tasks.filter((task) => task.status === "done");
+  const highPriorityTasks = tasks.filter((task) => task.priority === "high");
+  const completionRate = tasks.length
+    ? Math.round((doneTasks.length / tasks.length) * 100)
+    : 0;
 
   if (loading) {
-    return <p className="status-message">Loading tasks...</p>;
-  }
-
-  if (error) {
-    return <p className="status-message error">{error}</p>;
+    return <p className="status-message loading-panel">Loading tasks...</p>;
   }
 
   return (
     <>
+      <section className="board-overview" aria-label="Task metrics">
+        <article className="metric-card">
+          <p>Total Tasks</p>
+          <strong>{tasks.length}</strong>
+        </article>
+        <article className="metric-card">
+          <p>High Priority</p>
+          <strong>{highPriorityTasks.length}</strong>
+        </article>
+        <article className="metric-card">
+          <p>Completed</p>
+          <strong>{completionRate}%</strong>
+        </article>
+      </section>
+
       <TaskForm onTaskCreated={handleTaskCreated} />
+      {error && <p className="status-message error">{error}</p>}
+
       <div className="board">
         <Column
           title="To Do"
+          columnKey="todo"
           tasks={todoTasks}
           onStatusChange={handleStatusChange}
           onDeleteTask={handleDeleteTask}
+          emptyMessage="No tasks waiting here yet."
         />
         <Column
           title="In Progress"
+          columnKey="in-progress"
           tasks={inProgressTasks}
           onStatusChange={handleStatusChange}
           onDeleteTask={handleDeleteTask}
+          emptyMessage="Nothing is currently in progress."
         />
         <Column
           title="Done"
+          columnKey="done"
           tasks={doneTasks}
           onStatusChange={handleStatusChange}
           onDeleteTask={handleDeleteTask}
+          emptyMessage="Completed tasks will appear here."
         />
       </div>
     </>

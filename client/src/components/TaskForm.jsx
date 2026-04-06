@@ -56,42 +56,72 @@ function TaskForm({ onTaskCreated }) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
-      <h2>Create New Task</h2>
+      <div className="form-header">
+        <h2>Create New Task</h2>
+        <p>Add details once, then move tasks across columns as work progresses.</p>
+      </div>
 
-      <input
-        type="text"
-        name="title"
-        placeholder="Task title"
-        value={formData.title}
-        onChange={handleChange}
-        required
-      />
+      <div className="form-grid">
+        <label className="field" htmlFor="task-title">
+          <span>Title</span>
+          <input
+            id="task-title"
+            type="text"
+            name="title"
+            placeholder="Task title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <textarea
-        name="description"
-        placeholder="Task description"
-        value={formData.description}
-        onChange={handleChange}
-        required
-      />
+        <label className="field field-wide" htmlFor="task-description">
+          <span>Description</span>
+          <textarea
+            id="task-description"
+            name="description"
+            placeholder="Task description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-      <select name="status" value={formData.status} onChange={handleChange}>
-        <option value="todo">To Do</option>
-        <option value="in-progress">In Progress</option>
-        <option value="done">Done</option>
-      </select>
+        <label className="field" htmlFor="task-status">
+          <span>Status</span>
+          <select
+            id="task-status"
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+          >
+            <option value="todo">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
 
-      <select name="priority" value={formData.priority} onChange={handleChange}>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
+        <label className="field" htmlFor="task-priority">
+          <span>Priority</span>
+          <select
+            id="task-priority"
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+          >
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </label>
+      </div>
 
-      <button type="submit" disabled={submitting}>
-        {submitting ? "Creating..." : "Add Task"}
-      </button>
-
-      {error && <p className="form-error">{error}</p>}
+      <div className="form-footer">
+        <button type="submit" disabled={submitting}>
+          {submitting ? "Creating..." : "Add Task"}
+        </button>
+        {error && <p className="form-error">{error}</p>}
+      </div>
     </form>
   );
 }

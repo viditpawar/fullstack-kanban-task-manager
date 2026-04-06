@@ -4,11 +4,16 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>Full Stack Kanban Task Manager</h1>
-        <p>Task tracking dashboard with CI/CD-ready architecture</p>
-      </header>
-      <Board />
+      <div className="app-shell">
+        <header className="app-header">
+          <p className="eyebrow">Kanban Workspace</p>
+          <h1>Full Stack Kanban Task Manager</h1>
+          <p className="subtitle">
+            Plan clearly, ship faster, and keep every task in one focused board.
+          </p>
+        </header>
+        <Board />
+      </div>
     </div>
   );
 }

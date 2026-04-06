@@ -1,4 +1,4 @@
-function TaskCard({ task, onStatusChange, onDeleteTask }) {
+function TaskCard({ task, index, onStatusChange, onDeleteTask }) {
   const handleChange = (event) => {
     onStatusChange(task.id, event.target.value);
   };
@@ -8,13 +8,15 @@ function TaskCard({ task, onStatusChange, onDeleteTask }) {
   };
 
   return (
-    <div className="task-card">
-      <h3>{task.title}</h3>
-      <p>{task.description}</p>
-
-      <div className="task-meta">
+    <article
+      className={`task-card priority-${task.priority}`}
+      style={{ "--card-index": index }}
+    >
+      <div className="task-card-top">
+        <h3>{task.title}</h3>
         <span className={`priority ${task.priority}`}>{task.priority}</span>
       </div>
+      <p>{task.description}</p>
 
       <div className="task-actions">
         <label htmlFor={`status-${task.id}`}>Status</label>
@@ -28,11 +30,11 @@ function TaskCard({ task, onStatusChange, onDeleteTask }) {
           <option value="done">Done</option>
         </select>
 
-        <button className="delete-button" onClick={handleDelete}>
+        <button type="button" className="delete-button" onClick={handleDelete}>
           Delete Task
         </button>
       </div>
-    </div>
+    </article>
   );
 }
 
