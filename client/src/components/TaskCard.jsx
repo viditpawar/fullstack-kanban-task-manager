@@ -16,14 +16,15 @@ function TaskCard({ task, index, onDeleteTask }) {
       onDragStart={handleDragStart}
     >
       <div className="task-card-top">
-        <h3>{task.title}</h3>
+        <span className="task-id">Task-{task.id}</span>
         <span className={`priority ${task.priority}`}>{task.priority}</span>
       </div>
 
+      <h3>{task.title}</h3>
       <p>{task.description}</p>
 
       <div className="task-footer">
-        <span className="drag-hint">Drag to move</span>
+        <span className="drag-hint">Drag card</span>
         <button
           type="button"
           className="delete-button"

@@ -112,6 +112,7 @@ function Column({
     >
       <header className="column-header">
         <div className="column-title">
+          <span className="column-dot" aria-hidden="true" />
           <h2>{title}</h2>
           <span className="column-count">{tasks.length}</span>
         </div>
