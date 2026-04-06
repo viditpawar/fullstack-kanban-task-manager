@@ -13,6 +13,10 @@ A full-stack task management application built with React and Express, featuring
 - Manage tasks through a REST API
 - Run automated linting and backend tests in CI
 
+## Dashboard Preview
+
+![Kanban Dashboard](docs/images/dashboard.png)
+
 ## Tech Stack
 
 ### Frontend
