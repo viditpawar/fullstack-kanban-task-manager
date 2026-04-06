@@ -24,7 +24,6 @@ function TaskCard({ task, index, onDeleteTask }) {
       <p>{task.description}</p>
 
       <div className="task-footer">
-        <span className="drag-hint">Drag card</span>
         <button
           type="button"
           className="delete-button"

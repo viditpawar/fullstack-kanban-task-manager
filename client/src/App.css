@@ -334,16 +334,8 @@
   margin-top: 0.58rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.6rem;
-}
-
-.drag-hint {
-  font-size: 0.7rem;
-  color: #7084a1;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
 }
 
 .delete-button {
