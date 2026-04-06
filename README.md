@@ -15,7 +15,7 @@ A full-stack task management application built with React and Express, featuring
 
 ## Dashboard Preview
 
-![Kanban Dashboard](docs/images/dashboard.png)
+![Kanban task management dashboard with three columns labeled To Do, In Progress, and Done, displaying task cards with titles and status indicators in a professional blue and grey color scheme](docs/images/dashboard.png)
 
 ## Tech Stack
 
