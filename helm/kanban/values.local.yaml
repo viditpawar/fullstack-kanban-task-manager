@@ -1,0 +1,11 @@
+client:
+  image:
+    repository: localhost:5001/fullstack-kanban-task-manager-client
+    tag: local
+    pullPolicy: IfNotPresent
+
+server:
+  image:
+    repository: localhost:5001/fullstack-kanban-task-manager-server
+    tag: local
+    pullPolicy: IfNotPresent

@@ -1,0 +1,52 @@
+nameOverride: ""
+fullnameOverride: ""
+
+imagePullSecrets: []
+
+client:
+  replicaCount: 1
+  image:
+    repository: fullstack-kanban-task-manager-client
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    name: client
+    type: ClusterIP
+    port: 80
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+server:
+  replicaCount: 1
+  image:
+    repository: fullstack-kanban-task-manager-server
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    name: server
+    type: ClusterIP
+    port: 5000
+  env:
+    NODE_ENV: production
+    PORT: "5000"
+  persistence:
+    enabled: false
+    storageClassName: ""
+    size: 1Gi
+    accessModes:
+      - ReadWriteOnce
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host: kanban.local
+  path: /
+  pathType: Prefix
+

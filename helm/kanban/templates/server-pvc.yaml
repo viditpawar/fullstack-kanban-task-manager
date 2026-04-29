@@ -1,0 +1,19 @@
+{{- if .Values.server.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "kanban.fullname" . }}-server-data
+  labels:
+    {{- include "kanban.labels" . | nindent 4 }}
+    app.kubernetes.io/component: server
+spec:
+  accessModes:
+    {{- toYaml .Values.server.persistence.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.server.persistence.size }}
+  {{- if .Values.server.persistence.storageClassName }}
+  storageClassName: {{ .Values.server.persistence.storageClassName }}
+  {{- end }}
+{{- end }}
+

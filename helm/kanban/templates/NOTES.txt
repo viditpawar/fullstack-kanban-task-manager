@@ -1,0 +1,13 @@
+1. The release has been installed.
+
+2. For local access without ingress, run:
+   kubectl -n {{ .Release.Namespace }} port-forward service/{{ include "kanban.clientServiceName" . }} 8080:{{ .Values.client.service.port }}
+
+3. Then open:
+   http://localhost:8080
+
+{{- if .Values.ingress.enabled }}
+4. Ingress is enabled for host:
+   http://{{ .Values.ingress.host }}
+{{- end }}
+

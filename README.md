@@ -125,6 +125,66 @@ or:
 npm run docker:down
 ```
 
+## Local Kubernetes Setup (Helm)
+
+This repository includes a Helm chart at `helm/kanban` for deploying the app to a local Kubernetes cluster (for example, Docker Desktop Kubernetes).
+
+### Prerequisites
+
+- `kubectl` configured to your local cluster
+- Helm installed
+- Docker running
+
+### 1) Build local images
+
+```bash
+docker compose build
+```
+
+### 2) Start a local Docker registry
+
+```bash
+docker run -d -p 5001:5000 --restart unless-stopped --name kanban-local-registry registry:2
+```
+
+If the container already exists:
+
+```bash
+docker start kanban-local-registry
+```
+
+### 3) Tag and push images to the local registry
+
+```bash
+docker tag fullstack-kanban-task-manager-client:latest localhost:5001/fullstack-kanban-task-manager-client:local
+docker tag fullstack-kanban-task-manager-server:latest localhost:5001/fullstack-kanban-task-manager-server:local
+docker push localhost:5001/fullstack-kanban-task-manager-client:local
+docker push localhost:5001/fullstack-kanban-task-manager-server:local
+```
+
+### 4) Deploy with Helm
+
+```bash
+helm upgrade --install kanban-local ./helm/kanban \
+  --namespace kanban-local \
+  --create-namespace \
+  -f ./helm/kanban/values.local.yaml
+```
+
+### 5) Access the app
+
+```bash
+kubectl -n kanban-local port-forward service/client 8080:80
+```
+
+Open `http://localhost:8080`.
+
+### 6) Validate rollout
+
+```bash
+kubectl -n kanban-local get pods,svc
+```
+
 ## Available Scripts (Root)
 
 - `npm run client`: Start the Vite frontend dev server
