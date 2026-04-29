@@ -86,12 +86,53 @@ npm run client
 
 Frontend runs on `http://localhost:5173`.
 
+## Local Docker Setup
+
+Use Docker Compose to run frontend and backend together for local testing.
+
+### Prerequisites
+
+- Docker Desktop (or Docker Engine with Compose plugin)
+
+### 1) Build and start containers
+
+```bash
+docker compose up --build
+```
+
+or from the root scripts:
+
+```bash
+npm run docker:up
+```
+
+### 2) Access the app
+
+- Frontend: `http://localhost:8080`
+- Backend API: `http://localhost:5000`
+
+The frontend container proxies `/api/*` requests to the backend container.
+
+### 3) Stop containers
+
+```bash
+docker compose down
+```
+
+or:
+
+```bash
+npm run docker:down
+```
+
 ## Available Scripts (Root)
 
 - `npm run client`: Start the Vite frontend dev server
 - `npm run server`: Start the backend with nodemon
 - `npm run lint`: Run frontend and backend lint checks
 - `npm run test`: Run backend tests
+- `npm run docker:up`: Build and start Docker Compose services
+- `npm run docker:down`: Stop Docker Compose services
 
 ## API Endpoints
 

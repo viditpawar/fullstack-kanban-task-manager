@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Column from "./Column";
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+const buildApiUrl = (path) => `${API_BASE_URL}${path}`;
+
 const columns = [
   {
     key: "todo",
@@ -30,7 +33,7 @@ function Board() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/tasks");
+        const response = await fetch(buildApiUrl("/api/tasks"));
 
         if (!response.ok) {
           throw new Error("Failed to fetch tasks from the server.");
@@ -52,7 +55,7 @@ function Board() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
+      const response = await fetch(buildApiUrl("/api/tasks"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +89,7 @@ function Board() {
         return false;
       }
 
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(buildApiUrl(`/api/tasks/${taskId}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +131,7 @@ function Board() {
     setError("");
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(buildApiUrl(`/api/tasks/${taskId}`), {
         method: "DELETE",
       });
 
